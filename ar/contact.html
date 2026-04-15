@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جمعية AML — تواصل معنا</title>
+  <link rel="stylesheet" href="../style/main.css">
+</head>
+<body>
+
+  <div class="topbar">🤝 شريك رسمي لـ almahad-alali.com</div>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo-wrap">
+        <img src="../assets/logo.svg" alt="شعار جمعية AML" onerror="this.style.display='none'">
+        <span class="logo-text">جمعية <span>AML</span></span>
+      </a>
+      <nav>
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">من نحن</a>
+        <a href="discounts.html">المنح والخصومات</a>
+        <a href="contact.html" class="active">تواصل معنا</a>
+        <a href="donate.html">تبرع</a>
+        <a href="../he/contact.html" class="btn-lang">עברית</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero" style="padding:3.5rem 1.5rem;">
+    <div class="hero-inner">
+      <h1>تواصل <span>معنا</span></h1>
+      <p>هل لديك سؤال حول المنح أو عضوية الجمعية؟ نحن هنا للمساعدة.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner" style="display:grid;grid-template-columns:1fr 1fr;gap:2.5rem;align-items:start">
+
+      <div class="form-card">
+        <h2 style="font-size:1.4rem;margin-bottom:1.5rem;color:var(--navy)">أرسل رسالتك</h2>
+
+        <!--
+        ══════════════════════════════════════════════
+        FORMSPREE SETUP GUIDE (Arabic contact form)
+        ══════════════════════════════════════════════
+        1. Go to https://formspree.io and sign up for a free account.
+        2. Click "New Form", give it a name like "AML Arabic Contact".
+        3. Copy your unique endpoint — it looks like:
+               https://formspree.io/f/xyzabcde
+        4. Replace  action="YOUR_FORMSPREE_ENDPOINT"  below with that URL.
+        5. The free plan allows 50 submissions/month. Upgrade if needed.
+        6. Formspree sends all submissions to your registered email.
+           You can also set up Slack/Notion/Airtable integrations in the dashboard.
+        ══════════════════════════════════════════════
+        -->
+        <form
+          action="YOUR_FORMSPREE_ENDPOINT"
+          method="POST"
+          id="contact-form"
+        >
+          <!-- Formspree honeypot (spam protection) -->
+          <input type="text" name="_gotcha" style="display:none">
+
+          <div class="form-group">
+            <label for="name">الاسم الكامل *</label>
+            <input type="text" id="name" name="name" required placeholder="أدخل اسمك">
+          </div>
+
+          <div class="form-group">
+            <label for="email">البريد الإلكتروني *</label>
+            <input type="email" id="email" name="email" required placeholder="example@email.com">
+          </div>
+
+          <div class="form-group">
+            <label for="subject">الموضوع</label>
+            <select id="subject" name="subject">
+              <option value="">اختر الموضوع...</option>
+              <option value="منحة دراسية">طلب منحة دراسية</option>
+              <option value="خصم">الاستفسار عن خصم</option>
+              <option value="عضوية">عضوية الجمعية</option>
+              <option value="شراكة">شراكة أو تعاون</option>
+              <option value="أخرى">أخرى</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="message">رسالتك *</label>
+            <textarea id="message" name="message" required placeholder="اكتب رسالتك هنا..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-gold" style="width:100%">إرسال الرسالة ✈️</button>
+
+          <div class="form-success" id="form-success">
+            ✅ شكراً! تم استلام رسالتك وسنتواصل معك خلال 5 أيام عمل.
+          </div>
+        </form>
+      </div>
+
+      <div>
+        <div class="card" style="margin-bottom:1.5rem">
+          <div class="card-icon">📧</div>
+          <h3>البريد الإلكتروني</h3>
+          <p>info@aml-association.org</p>
+        </div>
+        <div class="card" style="margin-bottom:1.5rem">
+          <div class="card-icon">🌐</div>
+          <h3>موقع الشريك</h3>
+          <p><a href="https://almahad-alali.com" target="_blank">almahad-alali.com</a></p>
+        </div>
+        <div class="card">
+          <div class="card-icon">⏰</div>
+          <h3>أوقات الردّ</h3>
+          <p>الأحد – الخميس، 9 ص – 5 م<br>الردّ خلال 1-3 أيام عمل</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="index.html">الرئيسية</a>
+      <a href="about.html">من نحن</a>
+      <a href="discounts.html">المنح</a>
+      <a href="contact.html">تواصل</a>
+      <a href="donate.html">تبرع</a>
+      <a href="../he/contact.html">עברית</a>
+    </div>
+    <p>© 2025 جمعية AML — شريك رسمي لـ <a href="https://almahad-alali.com">almahad-alali.com</a></p>
+  </footer>
+
+  <script>
+    // Show success message after Formspree submission (no redirect)
+    const form = document.getElementById('contact-form');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const data = new FormData(form);
+      const resp = await fetch(form.action, {
+        method: 'POST',
+        body: data,
+        headers: { 'Accept': 'application/json' }
+      });
+      if (resp.ok) {
+        form.reset();
+        document.getElementById('form-success').style.display = 'block';
+      } else {
+        alert('حدث خطأ. يرجى المحاولة مرة أخرى.');
+      }
+    });
+  </script>
+
+</body>
+</html>
