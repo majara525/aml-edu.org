@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>جمعية أمل — مساعدة الطالب</title>
+  <link rel="icon" type="image/png" href="../assets/Logo_Only.png">
+  <link rel="stylesheet" href="../style/main.css">
+</head>
+<body>
+
+  <div class="topbar">جمعية أمل لدعم التربية والتعليم: منح، تدريب مهني، توجيه أكاديمي، ومبادرات مجتمعية</div>
+
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo-wrap">
+        <img src="../assets/Aml_logo.png" alt="شعار جمعية أمل">
+      </a>
+      <nav>
+        <a href="about.html">من نحن</a>
+        <a href="discounts.html">مشاريعنا</a>
+        <a href="articles_main.html">مقالات</a>
+        <a href="stu_help.html" class="active">مساعدة الطالب</a>
+        <a href="contact.html">تواصل معنا</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="hero-inner">
+      <h1><span>مساعدة الطالب</span></h1>
+      <p>استبيان إرشادي يساعدك على فهم ميولك الدراسية والمهنية. اختر من 1 إلى 10 لكل سؤال، ثم أدخل بياناتك لرؤية الاتجاه الأقرب لك.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="section-inner">
+      <div class="card quiz-intro">
+        <h2 style="font-size:1.45rem;margin-bottom:.75rem;color:var(--navy)">كيف تستخدم الاستبيان؟</h2>
+        <p style="color:var(--muted)">قيّم كل عبارة حسب وضعك الحالي: 1 يعني لا ينطبق عليّ أبداً، و10 يعني ينطبق عليّ جداً. النتيجة إرشادية وليست حكماً نهائياً؛ الهدف أن تساعدك على بدء التفكير وطلب الاستشارة المناسبة.</p>
+      </div>
+
+      <form id="student-help-form" novalidate>
+        <div class="quiz-groups" id="quiz-groups"></div>
+
+        <div class="card student-gate">
+          <h2 style="font-size:1.35rem;margin-bottom:1rem;color:var(--navy)">بيانات الطالب قبل عرض النتيجة</h2>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="student_name">الاسم الكامل *</label>
+              <input type="text" id="student_name" name="student_name" required>
+            </div>
+            <div class="form-group">
+              <label for="student_phone">رقم الهاتف *</label>
+              <input type="tel" id="student_phone" name="student_phone" required>
+            </div>
+            <div class="form-group">
+              <label for="student_email">البريد الإلكتروني *</label>
+              <input type="email" id="student_email" name="student_email" required>
+            </div>
+          </div>
+          <button type="submit" class="btn btn-gold" style="width:100%">عرض الاتجاه المناسب</button>
+        </div>
+      </form>
+
+      <div class="card result-box" id="result-box" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-links">
+      <a href="about.html">من نحن</a>
+      <a href="discounts.html">مشاريعنا</a>
+      <a href="articles_main.html">مقالات</a>
+      <a href="stu_help.html">مساعدة الطالب</a>
+      <a href="contact.html">تواصل معنا</a>
+    </div>
+    <p>© 2025 جمعية أمل لدعم التربية والتعليم. للتواصل: info@aml-edu.org</p>
+  </footer>
+
+  <script>
+    const directions = {
+      social: {
+        title: 'الاتجاه الاجتماعي والتربوي',
+        studies: 'قد تناسبك مسارات مثل التربية، الإرشاد، العمل المجتمعي، رعاية الطفولة، أو مجالات الدعم والخدمة.',
+        advice: 'ابحث عن مسار يمنحك تواصلاً مباشراً مع الناس، وابدأ بتجربة تطوعية أو تدريب قصير يساعدك على فهم طبيعة العمل.'
+      },
+      research: {
+        title: 'الاتجاه التحليلي والبحثي',
+        studies: 'قد تناسبك مجالات تعتمد على التحليل، البحث، المختبرات، العلوم، البيانات، أو الدراسة الأكاديمية المتعمقة.',
+        advice: 'اختر موضوعاً يسمح لك بالسؤال والمقارنة والاستنتاج، ودرّب نفسك على كتابة ملخصات وتحليل أمثلة واقعية.'
+      },
+      technical: {
+        title: 'الاتجاه التقني والرقمي',
+        studies: 'قد تناسبك مسارات الحاسوب، البرمجة، التصميم الرقمي، الدعم التقني، أو تشغيل الأدوات والأنظمة الحديثة.',
+        advice: 'ابدأ بمشروع عملي صغير: صفحة ويب، تصميم بسيط، أو حل مشكلة تقنية. المشروع يكشف لك بسرعة إن كان المجال يناسبك.'
+      },
+      administrative: {
+        title: 'الاتجاه الإداري والتنظيمي',
+        studies: 'قد تناسبك الإدارة، المحاسبة، السكرتارية، الموارد البشرية، تنظيم المشاريع، أو العمل المكتبي المنظم.',
+        advice: 'ركّز على الدقة، المتابعة، وإدارة الوقت. جرّب تنظيم ملف أو خطة عمل قصيرة لتختبر راحتك مع التفاصيل.'
+      },
+      practical: {
+        title: 'الاتجاه العملي والمهني التطبيقي',
+        studies: 'قد تناسبك المهن التطبيقية، التدريب العملي، المجالات الصحية المساندة، الصيانة، الحرف، أو الأعمال التي تعتمد على اليد والخبرة.',
+        advice: 'اختر تعلماً فيه تدريب ميداني واضح. إذا كنت تحب رؤية نتيجة ملموسة لعملك، فهذا الاتجاه يستحق الفحص.'
+      },
+      entrepreneurial: {
+        title: 'الاتجاه المبادر والريادي',
+        studies: 'قد تناسبك إدارة الأعمال، التسويق، المبيعات، المبادرات المجتمعية، قيادة الفرق، أو بناء مشاريع صغيرة.',
+        advice: 'درّب نفسك على عرض الأفكار، فهم احتياجات الناس، وتحويل الفكرة إلى خطوة قابلة للتنفيذ.'
+      }
+    };
+
+    const groups = [
+      {
+        key: 'social',
+        title: '1. الميل الاجتماعي والتربوي',
+        questions: [
+          'أحب مساعدة الآخرين عندما يواجهون صعوبة في الفهم أو الاختيار.',
+          'أشعر بالراحة عندما أستمع لمشكلة شخص وأحاول توجيهه بهدوء.',
+          'أفضل العمل الذي يتضمن تواصلاً مباشراً مع الناس.',
+          'أهتم بالأنشطة التي تخدم المجتمع أو تدعم فئة تحتاج للمساندة.',
+          'أستمتع بتبسيط فكرة معقدة لشخص آخر.',
+          'أستطيع الصبر مع الأطفال أو الطلاب أثناء التعلم.',
+          'أحب العمل ضمن فريق يحاول تحسين حياة الآخرين.',
+          'أشعر بالإنجاز عندما أرى شخصاً يتقدم بفضل مساعدة قدمتها.'
+        ]
+      },
+      {
+        key: 'research',
+        title: '2. الميل التحليلي والبحثي',
+        questions: [
+          'أحب أن أفهم سبب حدوث الأشياء وليس النتيجة فقط.',
+          'أستمتع بالبحث والمقارنة بين المعلومات قبل اتخاذ قرار.',
+          'أفضل حل الأسئلة التي تحتاج إلى تفكير وتحليل.',
+          'أحب قراءة شرح عميق عن موضوع يثير فضولي.',
+          'أنتبه للتفاصيل الصغيرة التي قد يتركها الآخرون.',
+          'أستمتع بتنظيم المعلومات في جداول أو ملاحظات واضحة.',
+          'أحب التجربة والملاحظة واستخلاص النتيجة.',
+          'أفضل الدراسة التي تمنحني فرصة للسؤال والتحقق.'
+        ]
+      },
+      {
+        key: 'technical',
+        title: '3. الميل التقني والرقمي',
+        questions: [
+          'أحب استخدام الحاسوب أو الهاتف لإنجاز مهام بطريقة أفضل.',
+          'أستمتع بتعلم برنامج أو أداة رقمية جديدة.',
+          'أحاول فهم طريقة عمل التطبيقات أو المواقع.',
+          'لا أخاف من تجربة خطوات تقنية جديدة حتى لو أخطأت في البداية.',
+          'أحب حل المشكلات التي تحتاج إلى ترتيب منطقي.',
+          'أميل إلى التصميم أو البرمجة أو التعامل مع الأنظمة الرقمية.',
+          'أستمتع بتحسين شكل أو أداء شيء رقمي.',
+          'أفضل التعلم الذي ينتج عنه ملف أو تصميم أو حل تقني واضح.'
+        ]
+      },
+      {
+        key: 'administrative',
+        title: '4. الميل الإداري والتنظيمي',
+        questions: [
+          'أحب ترتيب المهام ووضع خطة واضحة للعمل.',
+          'أنتبه للمواعيد والتفاصيل والإجراءات.',
+          'أرتاح عندما تكون الملفات والمعلومات منظمة.',
+          'أستطيع متابعة أكثر من مهمة دون أن أفقد الصورة العامة.',
+          'أحب التعامل مع الجداول، النماذج، أو الميزانيات البسيطة.',
+          'أفضل بيئة عمل فيها قواعد ومسؤوليات واضحة.',
+          'أستطيع التنسيق بين أشخاص أو خطوات للوصول إلى نتيجة.',
+          'أشعر بالإنجاز عندما أنهي عملاً منظماً بدقة.'
+        ]
+      },
+      {
+        key: 'practical',
+        title: '5. الميل العملي والمهني التطبيقي',
+        questions: [
+          'أفضل التعلم من خلال التطبيق العملي وليس الشرح النظري فقط.',
+          'أحب استخدام الأدوات أو الأجهزة أو المواد بيدي.',
+          'أشعر بالراحة في الأعمال التي يظهر فيها الناتج بشكل ملموس.',
+          'أتعلم بسرعة عندما أرى مثالاً عملياً أمامي.',
+          'أحب إصلاح الأشياء أو تحسينها أو تركيبها.',
+          'أفضل الحركة والعمل الميداني على الجلوس الطويل.',
+          'أهتم بإتقان مهارة عملية يمكن استخدامها مباشرة.',
+          'أحب الدورات التي تتضمن تدريباً وممارسة حقيقية.'
+        ]
+      },
+      {
+        key: 'entrepreneurial',
+        title: '6. الميل المبادر والريادي',
+        questions: [
+          'أحب اقتراح أفكار جديدة وتحويلها إلى خطوات.',
+          'أستطيع إقناع الآخرين بفكرة عندما أؤمن بها.',
+          'أشعر بالحماس عندما أبدأ مشروعاً أو نشاطاً من الصفر.',
+          'أفضل العمل الذي يمنحني مساحة للمبادرة واتخاذ القرار.',
+          'أحب فهم احتياجات الناس وتقديم حل مناسب لهم.',
+          'أستمتع بالتسويق أو العرض أو التحدث أمام الآخرين.',
+          'لا أخاف من تحمل مسؤولية نتيجة قرار اتخذته بعد تفكير.',
+          'أميل إلى قيادة فريق أو تنظيم مبادرة صغيرة.'
+        ]
+      }
+    ];
+
+    const quizGroups = document.getElementById('quiz-groups');
+    const resultBox = document.getElementById('result-box');
+    const form = document.getElementById('student-help-form');
+    const emailInput = document.getElementById('student_email');
+
+    function scoreOptions(name) {
+      let options = '<option value="">اختر</option>';
+      for (let i = 1; i <= 10; i += 1) {
+        options += `<option value="${i}">${i}</option>`;
+      }
+      return `<select name="${name}" required>${options}</select>`;
+    }
+
+    quizGroups.innerHTML = groups.map((group, groupIndex) => `
+      <section class="card quiz-group">
+        <h2>${group.title}</h2>
+        ${group.questions.map((question, questionIndex) => {
+          const number = groupIndex * 8 + questionIndex + 1;
+          return `
+            <div class="quiz-question">
+              <label for="q${number}">${number}. ${question}</label>
+              ${scoreOptions(`q${number}_${group.key}`)}
+            </div>
+          `;
+        }).join('')}
+      </section>
+    `).join('');
+
+    function isValidEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email);
+    }
+
+    function calculateScores() {
+      const totals = Object.fromEntries(groups.map((group) => [group.key, 0]));
+      const counts = Object.fromEntries(groups.map((group) => [group.key, 0]));
+
+      groups.forEach((group, groupIndex) => {
+        group.questions.forEach((_, questionIndex) => {
+          const number = groupIndex * 8 + questionIndex + 1;
+          const field = form.elements[`q${number}_${group.key}`];
+          totals[group.key] += Number(field.value);
+          counts[group.key] += 1;
+        });
+      });
+
+      return Object.keys(totals)
+        .map((key) => ({
+          key,
+          average: totals[key] / counts[key],
+          total: totals[key]
+        }))
+        .sort((a, b) => b.average - a.average);
+    }
+
+    function renderResult(scores) {
+      const top = scores[0];
+      const second = scores[1];
+      const topDirection = directions[top.key];
+      const secondDirection = directions[second.key];
+      const meter = scores.map((score) => {
+        const percent = Math.round(score.average * 10);
+        return `
+          <div class="result-row">
+            <strong>${directions[score.key].title.replace('الاتجاه ', '')}</strong>
+            <div class="result-bar"><span style="width:${percent}%"></span></div>
+            <span>${score.average.toFixed(1)}</span>
+          </div>
+        `;
+      }).join('');
+
+      resultBox.innerHTML = `
+        <h2>النتيجة الأقرب لك: ${topDirection.title}</h2>
+        <p>${topDirection.studies}</p>
+        <h3>اتجاه ثانٍ يستحق الانتباه: ${secondDirection.title}</h3>
+        <p>${secondDirection.studies}</p>
+        <h3>نصيحة عملية</h3>
+        <p>${topDirection.advice}</p>
+        <div class="result-meter">${meter}</div>
+        <p style="margin-top:1rem">هذه النتيجة إرشادية. القرار الأفضل يتكوّن من الميول، القدرة، الظروف، والتجربة العملية، ويمكنك التواصل معنا للحصول على استشارة أدق.</p>
+        <a href="contact.html" class="btn btn-gold mt-2">تواصل معنا للاستشارة</a>
+      `;
+      resultBox.classList.add('is-visible');
+      resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+      if (!form.checkValidity()) {
+        form.reportValidity();
+        return;
+      }
+      if (!isValidEmail(emailInput.value.trim())) {
+        emailInput.setCustomValidity('يرجى إدخال بريد إلكتروني صحيح.');
+        emailInput.reportValidity();
+        return;
+      }
+      emailInput.setCustomValidity('');
+      renderResult(calculateScores());
+    });
+
+    emailInput.addEventListener('input', () => {
+      emailInput.setCustomValidity('');
+    });
+  </script>
+
+</body>
+</html>

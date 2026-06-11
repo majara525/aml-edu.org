@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>جمعية أمل — تواصل معنا</title>
+  <link rel="icon" type="image/png" href="../assets/Logo_Only.png">
   <link rel="stylesheet" href="../style/main.css">
 </head>
 <body>
@@ -13,12 +14,13 @@
   <header>
     <div class="header-inner">
       <a href="index.html" class="logo-wrap">
-        <img src="../assets/Aml_logo.jpg" alt="شعار جمعية أمل">
+        <img src="../assets/Aml_logo.png" alt="شعار جمعية أمل">
       </a>
       <nav>
         <a href="about.html">من نحن</a>
         <a href="discounts.html">مشاريعنا</a>
         <a href="articles_main.html">مقالات</a>
+        <a href="stu_help.html">مساعدة الطالب</a>
         <a href="contact.html" class="active">تواصل معنا</a>
       </nav>
     </div>
@@ -61,17 +63,22 @@
 
           <div class="form-group">
             <label for="name">الاسم الكامل *</label>
-            <input type="text" id="name" name="name">
+            <input type="text" id="name" name="name" required>
           </div>
 
           <div class="form-group">
             <label for="email">البريد الإلكتروني *</label>
-            <input type="email" id="email" name="email">
+            <input type="email" id="email" name="email" required>
           </div>
 
           <div class="form-group">
-            <label for="subject">الموضوع</label>
-            <select id="subject" name="subject">
+            <label for="phone">رقم الهاتف *</label>
+            <input type="tel" id="phone" name="phone" required placeholder="أدخل رقم الهاتف">
+          </div>
+
+          <div class="form-group">
+            <label for="subject">الموضوع *</label>
+            <select id="subject" name="subject" required>
               <option value="">اختر الموضوع...</option>
               <option value="طلب منحة">طلب منحة</option>
               <option value="استشارة مهنية">استشارة مهنية ( تعليم مهني بإشراف الوزارات المختصة)</option>
@@ -80,9 +87,80 @@
             </select>
           </div>
 
+          <div class="conditional-fields" id="grant-fields" hidden>
+            <h3>تفاصيل طلب المنحة</h3>
+
+            <div class="form-grid">
+              <div class="form-group">
+                <label for="father_name">اسم الأب *</label>
+                <input type="text" id="father_name" name="father_name" data-grant-required disabled>
+              </div>
+
+              <div class="form-group">
+                <label for="student_id">رقم هوية الطالب *</label>
+                <input type="text" id="student_id" name="student_id" inputmode="numeric" data-grant-required disabled>
+              </div>
+
+              <div class="form-group">
+                <label for="family_status">الحالة الاجتماعية *</label>
+                <select id="family_status" name="family_status" data-grant-required disabled>
+                  <option value="">اختر الحالة...</option>
+                  <option value="أعزب/عزباء">أعزب/عزباء</option>
+                  <option value="متزوج/متزوجة">متزوج/متزوجة</option>
+                  <option value="أرمل/أرملة">أرمل/أرملة</option>
+                </select>
+              </div>
+
+              <div class="form-group" id="kids-field" hidden>
+                <label for="number_of_kids">عدد الأولاد *</label>
+                <input type="number" id="number_of_kids" name="number_of_kids" min="0" disabled>
+              </div>
+
+              <div class="form-group">
+                <label for="school_degree">الشهادة/المرحلة الدراسية *</label>
+                <input type="text" id="school_degree" name="school_degree" data-grant-required disabled>
+              </div>
+
+              <div class="form-group">
+                <label for="school_grade">الصف/المعدل الدراسي *</label>
+                <input type="text" id="school_grade" name="school_grade" data-grant-required disabled>
+              </div>
+
+              <div class="form-group">
+                <label for="graduation_year">سنة التخرج من المدرسة *</label>
+                <input type="number" id="graduation_year" name="graduation_year" min="1950" max="2100" data-grant-required disabled>
+              </div>
+
+              <div class="form-group">
+                <label for="home_address">عنوان السكن الكامل *</label>
+                <input type="text" id="home_address" name="home_address" data-grant-required disabled>
+              </div>
+
+              <div class="form-group">
+                <label for="parents_partner_salary">دخل الوالدين/الشريك معاً *</label>
+                <input type="number" id="parents_partner_salary" name="parents_partner_salary" min="0" step="0.01" data-grant-required disabled>
+              </div>
+
+              <div class="form-group">
+                <label for="student_salary">دخل الطالب *</label>
+                <input type="number" id="student_salary" name="student_salary" min="0" step="0.01" data-grant-required disabled>
+              </div>
+
+              <div class="form-group">
+                <label for="course_price">سعر الدورة *</label>
+                <input type="number" id="course_price" name="course_price" min="0" step="0.01" data-grant-required disabled>
+              </div>
+            </div>
+
+            <label class="checkbox-field" for="grant_truth_confirm">
+              <input type="checkbox" id="grant_truth_confirm" name="grant_truth_confirm" value="أوافق" data-grant-required disabled>
+              أقرّ بأن جميع المعلومات التي قدمتها صحيحة وكاملة.
+            </label>
+          </div>
+
           <div class="form-group">
-            <label for="message">رسالتك *</label>
-            <textarea id="message" name="message" required placeholder="اكتب رسالتك هنا..."></textarea>
+            <label for="message">رسالتك</label>
+            <textarea id="message" name="message" placeholder="اكتب رسالتك هنا..."></textarea>
           </div>
 
           <button type="submit" class="btn btn-gold" style="width:100%">إرسال الرّسالة</button>
@@ -114,6 +192,7 @@
       <a href="about.html">من نحن</a>
       <a href="discounts.html">مشاريعنا</a>
       <a href="articles_main.html">مقالات</a>
+      <a href="stu_help.html">مساعدة الطالب</a>
       <a href="contact.html">تواصل معنا</a>
     </div>
     <p>© 2025 جمعية أمل لدعم التربية والتعليم. للتواصل: info@aml-edu.org</p>
@@ -122,6 +201,45 @@
   <script>
     // Show success message after Formspree submission (no redirect)
     const form = document.getElementById('contact-form');
+    const subject = document.getElementById('subject');
+    const grantFields = document.getElementById('grant-fields');
+    const grantRequiredFields = grantFields.querySelectorAll('[data-grant-required]');
+    const familyStatus = document.getElementById('family_status');
+    const kidsField = document.getElementById('kids-field');
+    const kidsInput = document.getElementById('number_of_kids');
+
+    function setGrantFieldsEnabled(isEnabled) {
+      grantFields.hidden = !isEnabled;
+      grantRequiredFields.forEach((field) => {
+        field.disabled = !isEnabled;
+        field.required = isEnabled;
+        if (!isEnabled) {
+          if (field.type === 'checkbox') {
+            field.checked = false;
+          } else {
+            field.value = '';
+          }
+        }
+      });
+      updateKidsField();
+    }
+
+    function updateKidsField() {
+      const needsKids = !grantFields.hidden && (familyStatus.value === 'متزوج/متزوجة' || familyStatus.value === 'أرمل/أرملة');
+      kidsField.hidden = !needsKids;
+      kidsInput.disabled = !needsKids;
+      kidsInput.required = needsKids;
+      if (!needsKids) kidsInput.value = '';
+    }
+
+    subject.addEventListener('change', () => {
+      setGrantFieldsEnabled(subject.value === 'طلب منحة');
+    });
+
+    familyStatus.addEventListener('change', updateKidsField);
+
+    setGrantFieldsEnabled(subject.value === 'طلب منحة');
+
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const data = new FormData(form);
@@ -132,6 +250,7 @@
       });
       if (resp.ok) {
         form.reset();
+        setGrantFieldsEnabled(false);
         document.getElementById('form-success').style.display = 'block';
       } else {
         alert('حدث خطأ. يرجى المحاولة مرة أخرى.');
