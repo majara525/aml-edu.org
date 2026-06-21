@@ -293,6 +293,39 @@
       `;
       resultBox.classList.add('is-visible');
       resultBox.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      return {
+        topDirection: topDirection.title,
+        topScore: top.average.toFixed(1),
+        secondDirection: secondDirection.title,
+        secondScore: second.average.toFixed(1),
+        advice: topDirection.advice
+      };
+    }
+
+    function collectAnswers(scores, result) {
+      const formData = new FormData(form);
+      formData.append('_subject', 'نتيجة استبيان التوجيه المهني والأكاديمي');
+      formData.append('result_top_direction', result.topDirection);
+      formData.append('result_top_score', result.topScore);
+      formData.append('result_second_direction', result.secondDirection);
+      formData.append('result_second_score', result.secondScore);
+      formData.append('result_advice', result.advice);
+      scores.forEach((score) => {
+        formData.append(`score_${score.key}`, score.average.toFixed(1));
+      });
+      return formData;
+    }
+
+    async function submitToFormspree(formData) {
+      try {
+        await fetch('https://formspree.io/f/mnjkarlb', {
+          method: 'POST',
+          body: formData,
+          headers: { Accept: 'application/json' }
+        });
+      } catch (error) {
+        console.warn('Formspree submission failed', error);
+      }
     }
 
     form.addEventListener('submit', (event) => {
@@ -307,7 +340,9 @@
         return;
       }
       emailInput.setCustomValidity('');
-      renderResult(calculateScores());
+      const scores = calculateScores();
+      const result = renderResult(scores);
+      submitToFormspree(collectAnswers(scores, result));
     });
 
     emailInput.addEventListener('input', () => {
