@@ -1,0 +1,24 @@
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "NGO",
+      "@id": "https://aml-edu.org/#organization",
+      "name": "جمعية أمل لدعم التربية والتعليم",
+      "url": "https://aml-edu.org/",
+      "logo": "https://aml-edu.org/assets/Aml_logo.png",
+      "email": "info@aml-edu.org",
+      "description": "جمعية أمل تدعم الطلاب عبر منح وخصومات دراسية، توجيه أكاديمي ومهني، ومبادرات تعليمية ومجتمعية."
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://aml-edu.org/#website",
+      "name": "جمعية أمل لدعم التربية والتعليم",
+      "url": "https://aml-edu.org/",
+      "inLanguage": "ar",
+      "publisher": {
+        "@id": "https://aml-edu.org/#organization"
+      }
+    }
+  ]
+}
